@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JavaScript apps</title>
+    </head>
+    <body>
+        <p style="font-family:Verdana">Here is one app I made with JS:</p>
+        <pre>
+            <code class="language-javascript">
+$(document).ready(function() {
+    function StaffMember(name,discountPercent){
+        this.name = name;
+        this.discountPercent = discountPercent;
+    }
+    
+    // Staff
+    var sally = new StaffMember("Sally",5);
+    var bob = new StaffMember("Bob",10);
+    var me = new StaffMember("Camzilla",20);
+
+    // Array "scans"
+    var scans = new Array;
+    scans[0]="eggs";
+    scans[1]="milk";
+    scans[2]="magazine";
+    scans[3]="chocolate";
+    scans[4]="lettuce";
+    scans[5]="steak";
+    scans[6]="orange juice";
+    scans[7]="cheese";
+    scans[8]="porkchops";
+    scans[9]="nectarines";
+    scans[10]="Kefir!";
+    scans[11]="strawberries";
+    scans[12]="bread";
+    scans[13]="peanut butter";
+    scans[14]="jam";
+    scans[15]="yogurt";
+    scans[16]="cucumbers";
+
+    // Object "cashRegister"
+    var cashRegister = {
+    total:0,
+    lastTransactionAmount:0,
+    amountPaid:0,
+    itemNum:-1,
+    itemLog:new Array,
+    add: function(itemCost){
+            this.total += (itemCost || 0);
+            this.lastTransactionAmount = itemCost;
+        },
+    logItem: function(item,quantity,price){
+            this.itemNum += 1; this.itemLog[this.itemNum] = item+": "+quantity;
+            console.log(item+": "+quantity+"  "+"$"+(price * quantity).toFixed(2)+"     "+"("+"$"+price+" EA)");
+        },
+    scan: function(item,qua){
+        switch (item){
+        case scans[0]:this.add(0.98 * qua); this.logItem(scans[0],qua,0.98); break;
+        case scans[1]:this.add(1.23 * qua); this.logItem(scans[1],qua,1.23); break;
+        case scans[2]:this.add(4.99 * qua); this.logItem(scans[2],qua,4.99); break;
+        case scans[3]:this.add(0.45 * qua); this.logItem(scans[3],qua,0.45);break;
+        case scans[4]:this.add(2.49 * qua); this.logItem(scans[4],qua,2.49); break;
+        case scans[5]:this.add(11.99 * qua); this.logItem(scans[5],qua,11.99); break;
+        case scans[6]:this.add(4.97 * qua); this.logItem(scans[6],qua,4.97); break;
+        case scans[7]:this.add(2.79 * qua); this.logItem(scans[7],qua,2.79); break;
+        case scans[8]:this.add(8.57 * qua); this.logItem(scans[8],qua,8.57); break;
+        case scans[9]:this.add(0.80 * qua); this.logItem(scans[9],qua,0.80); break;
+        case scans[10]:this.add(3.89 * qua); this.logItem(scans[10],qua,3.89); break;
+        case scans[11]:this.add(5.75 * qua); this.logItem(scans[11],qua,5.75); break;
+        case scans[12]:this.add(4.79 * qua); this.logItem(scans[12],qua,4.79); break;
+        case scans[13]:this.add(3.99 * qua); this.logItem(scans[13],qua,3.99); break;
+        case scans[14]:this.add(3.89 * qua); this.logItem(scans[14],qua,3.89); break;
+        case scans[15]:this.add(3.59 * qua); this.logItem(scans[15],qua,3.59); break;
+        case scans[16]:this.add(0.70 * qua); this.logItem(scans[16],qua,0.70); break;
+        default: console.log("Sorry, we don't have "+item); break;
+        }
+        return true;
+        },
+    voidLastTransaction: function(){
+        this.total -= this.lastTransactionAmount;
+        this.lastTransactionAmount = 0;
+        console.log("VOIDED");
+    },
+    applyStaffDiscount: function(employee){
+        this.total -= this.total * (employee.discountPercent / 100);
+    },
+    acceptMoney: function(){
+        if (this.amountPaid < this.total) {
+            console.log("Sorry, you didn't pay enough :(");
+        } else {
+            console.log("You have change of "+"$"+(this.amountPaid - this.total         ).toFixed(2));
+        }
+    },
+    applyDiscountAnyPercent: function(discountPercent){
+        this.total -= this.total * (discountPercent / 100);
+    }
+    };
+    
+    // Log items here
+    
+    // Discount percents here
+
+    // Object "functions"
+    var functions = {
+        logBill: function(){
+            console.log('\nYour bill is '+'$'+cashRegister.total.toFixed(2));
+            cashRegister.acceptMoney();
+        },
+        consoleClear: function(){
+            console.clear();
+        },
+        showItemLog: function(){
+            for (var i = 0; i < cashRegister.itemLog.length; i++){
+                console.log(cashRegister.itemLog[i]);
+            }
+        }
+    }
+});</code></pre><p style="font-family:Verdana">This is a cash register. I was inspired to do this by the course on Codecademy. I think it is pretty cool, and I add more on to this every day. Well, most every day. Here is a picture of me working on the cash register:<br><br><img src="/Users/camilomason0/Desktop/NHA/Images/Cash_register.png" style="width: 49em; height: 26em"><br>Anyway, I have been working on this a lot, and I am very proud of it.<br><br>Now, another app in JS! Here it is:</p><pre><code class="language-javascript">{
+function Person(firstName,lastName,email,phoneNumber) {
+    this.firstName = firstName
+    this.lastName = lastName
+    this.email = email
+    this.phoneNumber = phoneNumber
+    this.sayName = function sayName() {
+        confirm(firstName + " " + lastName)
+    }
+    this.sayEmail = function sayEmail() {
+        confirm(email)
+    }
+    this.sayPhone = function sayPhone() {
+        confirm(phoneNumber)
+    }
+    this.sayOne = function sayOne() {
+        confirm("Name: "+firstName+" "+lastName+"\n"+"Email: "+email+"\n"+"Phone number: "+phoneNumber)
+    }
+}
+}/CONSTRUCTOR/
+{
+var contact = new Array;
+}/ARRAY/
+{
+function listAll() {
+    for(var i = 0; i < contact.length; i++) {
+        confirm("Name: "+contact[i].firstName+" "+contact[i].lastName+"\n"+"Email: "+contact[i].email+"\n"+"Phone number: "+contact[i].phoneNumber)
+    }
+}
+}/LISTALL/
+
+// Now we can call the functions!</code></pre><p style="font-family:Verdana">That project was a contact book. It stores names, emails, phone numbers, you name it. Right now I have not put anyone in it, but soon I will. It is fully functioning, and you only have to write down the names once. I am not selling this thing, even though it might seem that way now. Anyhow, you only need call the functions to see everyone you need. It is great. You may steal the design, what else would I use it for?<br>I am also proud of this. It is great, despite the short length. Finally, here is a photo of me working on my contact book, or something like it! I have no idea.<br><br><img src="/Users/camilomason0/Desktop/NHA/Images/Contact_book.png" style="width: 49em; height: 26em"><br>Pretty cool. That's all!<br><br><a href="/Users/camilomason0/Desktop/NHA/HTML/index.html"><h2><b>Go back</b></h2></a></p>
+    </body>
+</html>
