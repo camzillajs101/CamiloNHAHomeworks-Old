@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	</head>
+	<body>
+		<button id="roll">Click to roll!</button><br>
+		<span id="roll_val"></span><br><br>
+		Current square: <span id="current"></span><br>
+		<span id="l_s_if"></span><br><br>
+		<span id="ladders"></span><br>
+		<span id="chutes"></span>
+
+		<script>
+		var square = 0
+		var ladders = new Array();
+		ladders[0] = 1;
+		ladders[1] = 25;
+		ladders[2] = 11;
+		ladders[3] = 20;
+		ladders[4] = 8;
+		ladders[5] = 15;
+		var chutes = new Array();
+		chutes[0] = 24;
+		chutes[1] = 2;
+		chutes[2] = 15;
+		chutes[3] = 9;
+		chutes[4] = 19;
+		chutes[5] = 10;
+		var listener = function(){
+			var roll = Math.floor((Math.random()*6)+1)
+			square += roll
+			$('#roll_val').html("You rolled a: "+roll)
+			for (var i = 0; i < ladders.length; i++) {
+				
+			};
+			for (var i = 0; i < ladders.length; i=i+2) {
+				if (square === ladders[i]) {
+					$('#l_s_if').html("You landed on a ladder!");
+					square = ladders[i+1];
+				}
+			};
+			for (var i = 0; i < chutes.length; i=i+2) {
+				if (square === chutes[i]) {
+					$('#l_s_if').html("You landed on a chute!");
+					square = chutes[i+1];
+				}
+			};
+			$('#current').html(square)
+		}
+		$('#roll').click(listener);
+		</script>
+	</body>
+</html>
